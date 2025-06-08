@@ -3,16 +3,10 @@
 namespace Laravel\Airlock;
 
 use Laravel\Airlock\HasApiTokens;
+use Mockery;
 
 class Airlock
 {
-    /**
-     * The user model that should be used.
-     *
-     * @var string
-     */
-    public static $userModel;
-
     /**
      * The personal access client model class name.
      *
@@ -25,29 +19,35 @@ class Airlock
      *
      * @var bool
      */
-    public static $runsMigrations;
+    public static $runsMigrations = true;
 
     /**
-     * Get the name of the user model used by Airlock.
+     * Set the current user for the application with the given abilities.
      *
-     * @return string
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|\Laravel\Airlock\HasApiTokens  $user
+     * @param  array  $abilities
+     * @param  string  $guard
+     * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    public static function userModel()
+    public static function actingAs($user, $abilities = [], $guard = 'airlock')
     {
-        return static::$userModel ?: config('auth.providers.users.model', 'App\\User');
-    }
+        $token = Mockery::mock(self::personalAccessTokenModel())->shouldIgnoreMissing(false);
 
-    /**
-     * Specify the user model that should be used.
-     *
-     * @param  string  $model
-     * @return static
-     */
-    public static function useUserModel(string $model)
-    {
-        static::$userModel = $model;
+        foreach ($abilities as $ability) {
+            $token->shouldReceive('can')->with($ability)->andReturn(true);
+        }
 
-        return new static;
+        $user->withAccessToken($token);
+
+        if (isset($user->wasRecentlyCreated) && $user->wasRecentlyCreated) {
+            $user->wasRecentlyCreated = false;
+        }
+
+        app('auth')->guard($guard)->setUser($user);
+
+        app('auth')->shouldUse($guard);
+
+        return $user;
     }
 
     /**
@@ -68,15 +68,7 @@ class Airlock
      */
     public static function shouldRunMigrations()
     {
-        if (! is_null(static::$runsMigrations)) {
-            return static::$runsMigrations;
-        }
-
-        $model = static::userModel();
-
-        return class_exists($model)
-                    ? in_array(HasApiTokens::class, class_uses_recursive($model))
-                    : true;
+       return static::$runsMigrations;
     }
 
     /**
@@ -89,5 +81,15 @@ class Airlock
         static::$runsMigrations = false;
 
         return new static;
+    }
+
+    /**
+     * Get the token model class name.
+     *
+     * @return string
+     */
+    public static function personalAccessTokenModel()
+    {
+        return static::$personalAccessTokenModel;
     }
 }

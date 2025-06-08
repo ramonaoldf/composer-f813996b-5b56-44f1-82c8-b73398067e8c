@@ -38,11 +38,13 @@ class PersonalAccessToken extends Model implements HasAbilities
     ];
 
     /**
-     * Get the user that the access token belongs to.
+     * Get the tokenable model that the access token belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function user()
+    public function tokenable()
     {
-        return $this->belongsTo(Airlock::userModel());
+        return $this->morphTo('tokenable');
     }
 
     /**

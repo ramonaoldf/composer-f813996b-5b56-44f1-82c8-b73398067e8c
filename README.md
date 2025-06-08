@@ -58,7 +58,7 @@ Route::middleware('auth:airlock')->get('/user', function (Request $request) {
 If you are using Passport to authenticate other portions of your application using OAuth2, you are welcome to also use Airlock. The `auth` middleware allows you to specify multiple guards that will be used in sequence when attempting to authenticate incoming requests:
 
 ```php
-Route::middleware('auth:airlock,passport')->get('/user', function (Request $request) {
+Route::middleware('auth:airlock,api')->get('/user', function (Request $request) {
     return $request->user();
 });
 ```
@@ -175,7 +175,7 @@ Within your web application's UI, you may wish to list each of the user's tokens
 
 ## Customization
 
-You may customize the "user" model and the personal access token model used by Airlock via the `useUserModel` and `usePersonalAccessTokenModel` methods. Typically, you should call these methods from the `boot` method of your `AppServiceProvider`:
+You may customize the personal access token model used by Airlock via the `usePersonalAccessTokenModel` methods. Typically, you should call this method from the `boot` method of your `AppServiceProvider`:
 
 ```php
 use App\Airlock\CustomPersonalAccessToken;
@@ -184,12 +184,40 @@ use Laravel\Airlock\Airlock;
 
 public function boot()
 {
-    Airlock::useUserModel(CustomUser::class);
-
     Airlock::usePersonalAccessTokenModel(
         CustomPersonalAccessToken::class
     );
 }
+```
+
+## Testing
+
+While testing, the `Airlock::actingAs` method may be used to authenticate a user and specify which abilities are granted to their token:
+
+```php
+use App\User;
+use Laravel\Airlock\Airlock;
+
+public function test_task_list_can_be_retrieved()
+{
+    Airlock::actingAs(
+        factory(User::class)->create(),
+        ['view-tasks']
+    );
+
+    $response = $this->get('/api/task');
+
+    $response->assertOk();
+}
+```
+
+If you would like to grant all abilities to the token, you should include `*` in your ability list:
+
+```php
+Airlock::actingAs(
+    factory(User::class)->create(),
+    ['*']
+);
 ```
 
 ## Contributing
