@@ -85,6 +85,41 @@ In addition, you should ensure your application's session cookie domain configur
 
     'domain' => '.domain.com',
 
+#### Authorization Private / Presence Broadcast Channels
+
+If your SPA needs to authenticate with private / presence broadcast channels, you should place the `Broadcast::routes` method call within your `routes/api.php` file like so:
+
+```php
+Broadcast::routes(['middleware' => ['auth:airlock']]);
+```
+
+Next, in order for Pusher's authorization requests to succeed, you will need to provide a custom Pusher `authorizer` when initializing Laravel Echo. This allows your application to configure Pusher to use the `axios` instance that is properly configured for cross-domain requests:
+
+```js
+window.Echo = new Echo({
+    broadcaster: "pusher",
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: true,
+    key: process.env.MIX_PUSHER_APP_KEY,
+    authorizer: (channel, options) => {
+        return {
+            authorize: (socketId, callback) => {
+                axios.post('/api/broadcasting/auth', {
+                    socket_id: socketId,
+                    channel_name: channel.name
+                })
+                .then(response => {
+                    callback(false, response.data);
+                })
+                .catch(error => {
+                    callback(true, error);
+                });
+            }
+        };
+    },
+})
+```
+
 ## Issuing API Tokens
 
 Airlock also allows you to issue API tokens / personal access tokens that may be used to authenticate API requests. The token should be included in the `Authorization` header as a `Bearer` token.
