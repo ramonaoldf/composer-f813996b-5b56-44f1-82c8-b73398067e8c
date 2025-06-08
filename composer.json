@@ -1,15 +1,15 @@
 {
-    "name": "presttec\/laravel-airlock",
-    "description": "Laravel Airlock provides a featherweight authentication system for SPAs and simple APIs.",
+    "name": "presttec\/laravel-sanctum",
+    "description": "Laravel Sanctum provides a featherweight authentication system for SPAs and simple APIs.",
     "keywords": [
         "laravel",
-        "airlock",
+        "sanctum",
         "auth"
     ],
     "license": "MIT",
     "support": {
-        "issues": "https:\/\/github.com\/presttec\/laravel-airlock\/issues",
-        "source": "https:\/\/github.com\/presttec\/laravel-airlock"
+        "issues": "https:\/\/github.com\/presttec\/laravel-sanctum\/issues",
+        "source": "https:\/\/github.com\/presttec\/laravel-sanctum"
     },
     "authors": [
         {
@@ -31,12 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravel\\Airlock\\": "src\/"
+            "Laravel\\Sanctum\\": "src\/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravel\\Airlock\\Tests\\": "tests\/"
+            "Laravel\\Sanctum\\Tests\\": "tests\/"
         }
     },
     "extra": {
@@ -45,7 +45,7 @@
         },
         "laravel": {
             "providers": [
-                "Laravel\\Airlock\\AirlockServiceProvider"
+                "Laravel\\Sanctum\\SanctumServiceProvider"
             ]
         }
     },
@@ -55,9 +55,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "replaces": {
-        "laravel\/airlock": "*"
+        "laravel\/sanctum": "*"
     },
     "conflicts": {
-        "laravel\/airlock": "*"
+        "laravel\/sanctum": "*"
     }
 }
