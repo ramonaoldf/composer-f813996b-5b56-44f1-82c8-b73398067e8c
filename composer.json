@@ -20,14 +20,14 @@
     "require": {
         "php": "^8.0.2",
         "ext-json": "*",
-        "presttec\/illuminate-console": "^9.21",
-        "presttec\/illuminate-contracts": "^9.21",
-        "presttec\/illuminate-database": "^9.21",
-        "presttec\/illuminate-support": "^9.21"
+        "presttec\/illuminate-console": "^9.21|^10.0",
+        "presttec\/illuminate-contracts": "^9.21|^10.0",
+        "presttec\/illuminate-database": "^9.21|^10.0",
+        "presttec\/illuminate-support": "^9.21|^10.0"
     },
     "require-dev": {
         "presttec\/mockery": "^1.0",
-        "presttec\/testbench": "^7.0",
+        "presttec\/testbench": "^7.0|^8.0",
         "presttec\/phpunit": "^9.3"
     },
     "autoload": {
