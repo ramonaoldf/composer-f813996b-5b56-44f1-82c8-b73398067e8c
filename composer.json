@@ -23,7 +23,8 @@
         "presttec\/illuminate-console": "^11.0",
         "presttec\/illuminate-contracts": "^11.0",
         "presttec\/illuminate-database": "^11.0",
-        "presttec\/illuminate-support": "^11.0"
+        "presttec\/illuminate-support": "^11.0",
+        "presttec\/console": "^7.0"
     },
     "require-dev": {
         "presttec\/mockery": "^1.6",
