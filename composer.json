@@ -20,17 +20,17 @@
     "require": {
         "php": "^8.2",
         "ext-json": "*",
-        "presttec\/illuminate-console": "^11.0",
-        "presttec\/illuminate-contracts": "^11.0",
-        "presttec\/illuminate-database": "^11.0",
-        "presttec\/illuminate-support": "^11.0",
+        "presttec\/illuminate-console": "^11.0|^12.0",
+        "presttec\/illuminate-contracts": "^11.0|^12.0",
+        "presttec\/illuminate-database": "^11.0|^12.0",
+        "presttec\/illuminate-support": "^11.0|^12.0",
         "presttec\/console": "^7.0"
     },
     "require-dev": {
         "presttec\/mockery": "^1.6",
-        "presttec\/testbench": "^9.0",
+        "presttec\/testbench": "^9.0|^10.0",
         "presttec\/phpstan": "^1.10",
-        "presttec\/phpunit": "^10.5"
+        "presttec\/phpunit": "^11.3"
     },
     "autoload": {
         "psr-4": {
