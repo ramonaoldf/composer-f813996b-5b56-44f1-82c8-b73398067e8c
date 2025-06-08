@@ -18,17 +18,17 @@
         }
     ],
     "require": {
-        "php": "^7.2|^8.0",
+        "php": "^8.0.2",
         "ext-json": "*",
-        "presttec\/illuminate-console": "^6.9|^7.0|^8.0|^9.0",
-        "presttec\/illuminate-contracts": "^6.9|^7.0|^8.0|^9.0",
-        "presttec\/illuminate-database": "^6.9|^7.0|^8.0|^9.0",
-        "presttec\/illuminate-support": "^6.9|^7.0|^8.0|^9.0"
+        "presttec\/illuminate-console": "^9.21",
+        "presttec\/illuminate-contracts": "^9.21",
+        "presttec\/illuminate-database": "^9.21",
+        "presttec\/illuminate-support": "^9.21"
     },
     "require-dev": {
         "presttec\/mockery": "^1.0",
-        "presttec\/testbench": "^4.0|^5.0|^6.0|^7.0",
-        "presttec\/phpunit": "^8.0|^9.3"
+        "presttec\/testbench": "^7.0",
+        "presttec\/phpunit": "^9.3"
     },
     "autoload": {
         "psr-4": {
@@ -42,7 +42,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.x-dev"
+            "dev-master": "3.x-dev"
         },
         "laravel": {
             "providers": [
