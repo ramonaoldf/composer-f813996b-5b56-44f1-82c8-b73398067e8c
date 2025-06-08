@@ -2,9 +2,9 @@
 
 <p align="center">
 <a href="https://github.com/presttec/laravel-sanctum/actions"><img src="https://github.com/presttec/laravel-sanctum/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/presttec/laravel-sanctum"><img src="https://poser.pugx.org/presttec/laravel-sanctum/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/presttec/laravel-sanctum"><img src="https://poser.pugx.org/presttec/laravel-sanctum/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/presttec/laravel-sanctum"><img src="https://poser.pugx.org/presttec/laravel-sanctum/license.svg" alt="License"></a>
+<a href="https://packagist.org/packages/presttec/laravel-sanctum"><img src="https://img.shields.io/packagist/dt/presttec/laravel-sanctum" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/presttec/laravel-sanctum"><img src="https://img.shields.io/packagist/v/presttec/laravel-sanctum" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/presttec/laravel-sanctum"><img src="https://img.shields.io/packagist/l/presttec/laravel-sanctum" alt="License"></a>
 </p>
 
 ## Introduction
